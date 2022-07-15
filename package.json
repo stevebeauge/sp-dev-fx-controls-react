@@ -1,5 +1,5 @@
 {
-  "name": "@pnp/spfx-controls-react",
+  "name": "@so365/spfx-controls-react",
   "description": "Reusable React controls for SharePoint Framework solutions",
   "version": "3.9.0",
   "scripts": {
