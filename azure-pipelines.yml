@@ -24,4 +24,4 @@ steps:
     command: 'publish'
     verbose: true
     publishRegistry: 'useFeed'
-    publishFeed: 'e0f7df04-b027-48a3-9f31-6b678929fd40'
+    publishFeed: 'https://pkgs.dev.azure.com/solutions365/So365/_packaging/So365Feed/npm/registry'
