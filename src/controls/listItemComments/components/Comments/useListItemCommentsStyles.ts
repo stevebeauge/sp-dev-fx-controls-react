@@ -1,16 +1,31 @@
-import * as React from "react";
-import { IDocumentCardStyles } from "@fluentui/react/lib/DocumentCard";
-import { IStackStyles } from "@fluentui/react/lib/Stack";
+import { IButtonStyles } from '@fluentui/react';
+import { IDocumentCardStyles } from '@fluentui/react/lib/DocumentCard';
+import { IStackStyles } from '@fluentui/react/lib/Stack';
 import {
   FontWeights,
-  getTheme,
   IStyle,
-  mergeStyles,
+  getTheme,
   mergeStyleSets,
+  mergeStyles,
+  type IProcessedStyleSet,
 } from '@fluentui/react/lib/Styling';
+import * as React from 'react';
 import { AppContext } from '../../common';
 import { TILE_HEIGHT } from '../../common/constants';
-import { IButtonStyles } from '@fluentui/react';
+
+interface IConfigurationListClasses {
+  listIcon: IStyle;
+  nolistItemIcon: IStyle;
+  divContainer: IStyle;
+  titlesContainer: IStyle;
+}
+
+interface IContentStyles {
+  container: IStyle;
+  header: IStyle | IStyle[];
+  heading: IStyle;
+  body: IStyle;
+}
 
 interface returnObjectStyles {
   itemContainerStyles: IStackStyles;
@@ -21,8 +36,8 @@ interface returnObjectStyles {
   documentCardDeleteStyles: Partial<IDocumentCardStyles>;
   documentCardHighlightedStyles: Partial<IDocumentCardStyles>;
   documentCardUserStyles: Partial<IDocumentCardStyles>;
-  configurationListClasses: any; // eslint-disable-line @typescript-eslint/no-explicit-any
-  contentStyles: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+  configurationListClasses: IProcessedStyleSet<IConfigurationListClasses>;
+  contentStyles: IProcessedStyleSet<IContentStyles>;
   iconButtonStyles: Partial<IButtonStyles>;
 }
 
@@ -41,7 +56,7 @@ export const useListItemCommentsStyles = (): returnObjectStyles => {
       paddingLeft: 20,
       paddingRight: 20,
       paddingBottom: 20,
-    } as IStyle,
+    } satisfies IStyle,
   };
 
   const buttonsContainerStyles: Partial<IStackStyles> = {
@@ -66,60 +81,60 @@ export const useListItemCommentsStyles = (): returnObjectStyles => {
   };
   const documentCardStyles: Partial<IDocumentCardStyles> = {
     root: {
-      maxWidth: "initial",
+      maxWidth: 'initial',
       marginBottom: 7,
-      width: "100%",
+      width: '100%',
       backgroundColor: theme.neutralLighterAlt,
-      userSelect: "text",
-      boxSizing: "border-box",
-      ":hover": {
+      userSelect: 'text',
+      boxSizing: 'border-box',
+      ':hover': {
         borderColor: theme.themePrimary,
         borderWidth: 1,
-      } as IStyle,
-    } as IStyle,
+      } satisfies IStyle,
+    } satisfies IStyle,
   };
 
   const documentCardHighlightedStyles: Partial<IDocumentCardStyles> = {
     root: {
-      maxWidth: "initial",
+      maxWidth: 'initial',
       marginBottom: 7,
-      width: "100%",
+      width: '100%',
       backgroundColor: theme.themeLighter,
-      userSelect: "text",
-      border: "solid 3px "+theme.themePrimary,
-      boxSizing: "border-box",
-      ":hover": {
+      userSelect: 'text',
+      border: 'solid 3px ' + theme.themePrimary,
+      boxSizing: 'border-box',
+      ':hover': {
         borderColor: theme.themePrimary,
         borderWidth: 1,
-      } as IStyle,
-    } as IStyle,
+      } satisfies IStyle,
+    } satisfies IStyle,
   };
 
   const documentCardDeleteStyles: Partial<IDocumentCardStyles> = {
     root: {
       marginBottom: 5,
       backgroundColor: theme.neutralLighterAlt,
-      boxSizing: "border-box",
-      ":hover": {
+      boxSizing: 'border-box',
+      ':hover': {
         borderColor: theme.themePrimary,
         borderWidth: 1,
-      } as IStyle,
-    } as IStyle,
+      } satisfies IStyle,
+    } satisfies IStyle,
   };
 
   const documentCardUserStyles: Partial<IDocumentCardStyles> = {
     root: {
       marginTop: 2,
       backgroundColor: theme?.white,
-      boxShadow: "0 5px 15px rgba(50, 50, 90, .1)",
-      boxSizing: "border-box",
+      boxShadow: '0 5px 15px rgba(50, 50, 90, .1)',
+      boxSizing: 'border-box',
 
       ':hover': {
         borderColor: theme.themePrimary,
         backgroundColor: theme.neutralLighterAlt,
         borderWidth: 1,
-      } as IStyle,
-    } as IStyle,
+      } satisfies IStyle,
+    } satisfies IStyle,
   };
 
   const configurationListClasses = mergeStyleSets({
@@ -137,9 +152,9 @@ export const useListItemCommentsStyles = (): returnObjectStyles => {
     }),
     divContainer: {
       display: 'block',
-    } as IStyle,
+    } satisfies IStyle,
     titlesContainer: {
-      width: "100%",
+      width: '100%',
       height: tilesHeight,
       marginBottom: 10,
       display: 'flex',
@@ -151,7 +166,7 @@ export const useListItemCommentsStyles = (): returnObjectStyles => {
       '&::-webkit-scrollbar': {
         width: 5,
       },
-    } as IStyle,
+    } satisfies IStyle,
   });
 
   const contentStyles = mergeStyleSets({

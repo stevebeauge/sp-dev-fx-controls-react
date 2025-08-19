@@ -1,18 +1,39 @@
-import * as React from "react";
-import { IDocumentCardStyles } from "@fluentui/react/lib/DocumentCard";
-import { IStackStyles } from "@fluentui/react/lib/Stack";
-import { IStyle, mergeStyleSets } from "@fluentui/react/lib/Styling";
-import { AppContext } from "../../common";
+import { IDocumentCardStyles } from '@fluentui/react/lib/DocumentCard';
+import { IStackStyles } from '@fluentui/react/lib/Stack';
+import {
+  IStyle,
+  mergeStyleSets,
+  type IProcessedStyleSet,
+} from '@fluentui/react/lib/Styling';
+import * as React from 'react';
+import type { MentionsInputStyle } from 'react-mentions';
+import { AppContext } from '../../common';
 
-export const useAddCommentStyles = () => { // eslint-disable-line @typescript-eslint/explicit-function-return-type
+type AddCommentStyles = {
+  documentCardUserStyles: Partial<IDocumentCardStyles>;
+  deleteButtonContainerStyles: Partial<IStackStyles>;
+  reactMentionStyles: MentionsInputStyle;
+  itemContainerStyles: IStackStyles;
+  searchMentionContainerStyles: Partial<IStackStyles>;
+  mentionsClasses: IProcessedStyleSet<{ mention: IStyle }>;
+  componentClasses: IProcessedStyleSet<{ container: IStyle }>;
+};
+
+export const useAddCommentStyles = (): AddCommentStyles => {
+  // explicit return type
   const { theme } = React.useContext(AppContext);
   const itemContainerStyles: IStackStyles = {
-    root: { paddingTop: 0, paddingLeft: 20, paddingRight: 20, paddingBottom: 20 } as IStyle,
+    root: {
+      paddingTop: 0,
+      paddingLeft: 20,
+      paddingRight: 20,
+      paddingBottom: 20,
+    } satisfies IStyle,
   };
 
   const deleteButtonContainerStyles: Partial<IStackStyles> = {
     root: {
-      position: "absolute",
+      position: 'absolute',
       top: 0,
       right: 0,
     },
@@ -21,16 +42,16 @@ export const useAddCommentStyles = () => { // eslint-disable-line @typescript-es
   const searchMentionContainerStyles: Partial<IStackStyles> = {
     root: {
       borderWidth: 1,
-      borderStyle: "solid",
-      borderColor: "silver",
-      width: "100%",
-      boxSizing: "border-box",
-      ":focus": {
+      borderStyle: 'solid',
+      borderColor: 'silver',
+      width: '100%',
+      boxSizing: 'border-box',
+      ':focus': {
         borderColor: theme.themePrimary,
       },
-      ":hover": {
+      ':hover': {
         borderColor: theme.themePrimary,
-        boxSizing: "border-box",
+        boxSizing: 'border-box',
       },
     },
   };
@@ -39,13 +60,13 @@ export const useAddCommentStyles = () => { // eslint-disable-line @typescript-es
     root: {
       marginTop: 2,
       backgroundColor: theme?.white,
-      boxShadow: "0 5px 15px rgba(50, 50, 90, .1)",
-      boxSizing: "border-box",
-      ":hover": {
+      boxShadow: '0 5px 15px rgba(50, 50, 90, .1)',
+      boxSizing: 'border-box',
+      ':hover': {
         borderColor: theme.themePrimary,
         backgroundColor: theme.neutralLighterAlt,
         borderWidth: 1,
-        boxSizing: "border-box",
+        boxSizing: 'border-box',
       } as IStyle,
     } as IStyle,
   };
@@ -53,98 +74,99 @@ export const useAddCommentStyles = () => { // eslint-disable-line @typescript-es
   const componentClasses = mergeStyleSets({
     container: {
       borderWidth: 1,
-      borderStyle: "solid",
-      display: "block",
-      borderColor: "silver",
-      overflow: "hidden",
-      width: "100%",
-      boxSizing: "border-box",
+      borderStyle: 'solid',
+      display: 'block',
+      borderColor: 'silver',
+      overflow: 'hidden',
+      width: '100%',
+      boxSizing: 'border-box',
       paddingTop: 1,
       paddingLeft: 1,
-    ":focus": {
+      ':focus': {
         borderWidth: 2,
         borderColor: theme.themePrimary,
         paddingTop: 0,
         paddingLeft: 0,
       },
-      ":hover": {
+      ':hover': {
         borderWidth: 2,
         borderColor: theme.themePrimary,
         paddingTop: 0,
         paddingLeft: 0,
       },
-    } as IStyle,
+    } satisfies IStyle,
   });
 
   const mentionsClasses = mergeStyleSets({
     mention: {
-      position: "relative",
+      position: 'relative',
       zIndex: 9999,
       color: theme.themePrimary,
-      pointerEvents: "none",
-    } as IStyle,
+      pointerEvents: 'none',
+    } satisfies IStyle,
   });
 
-  const reactMentionStyles = {
+  const reactMentionStyles: MentionsInputStyle = {
     control: {
-      backgroundColor: "#fff",
+      backgroundColor: '#fff',
       fontSize: 12,
-      border: "none",
-      fontWeight: "normal",
+      border: 'none',
+      fontWeight: 'normal',
       outlineColor: theme.themePrimary,
       borderRadius: 0,
-    } as IStyle,
-    "&multiLine": {
+    } satisfies IStyle,
+    '&multiLine': {
       control: {
-        border: "none",
+        border: 'none',
         fontFamily:
           '"Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue"',
         minHeight: 35,
         fontSize: 14,
         fontWeight: 400,
         borderRadius: 0,
-      } as IStyle,
+        height: 35, // Valeur par défaut
+      },
       highlighter: {
         padding: 9,
-        border: "none",
+        border: 'none',
         borderWidth: 0,
         borderRadius: 0,
-      } as IStyle,
+      } satisfies IStyle,
       input: {
         padding: 9,
-        border: "none",
-        outline: "none",
-      } as IStyle,
+        border: 'none',
+        outline: 'none',
+      } satisfies IStyle,
     },
 
-    "&singleLine": {
-      display: "inline-block",
+    '&singleLine': {
+      display: 'inline-block' as const,
       height: 50,
       outlineColor: theme.themePrimary,
-      border: "none",
+      border: 'none' as const,
       highlighter: {
         padding: 1,
-        border: "1px inset transparent",
-      },
+        border: '1px inset transparent',
+      } satisfies IStyle,
       input: {
         padding: 1,
-        width: "100%",
+        width: '100%',
         borderRadius: 0,
-        border: "none",
-      },
+        border: 'none',
+      } satisfies IStyle,
     },
 
     suggestions: {
       list: {
-        backgroundColor: "white",
-        border: "1px solid rgba(0,0,0,0.15)",
+        backgroundColor: 'white',
+        border: '1px solid rgba(0,0,0,0.15)',
         fontSize: 14,
       },
       item: {
-        padding: "5px 15px",
-        borderBottom: "1px solid",
+        padding: '5px 15px',
+        borderBottom: '1px solid',
         borderBottomColor: theme.themeLight,
-        "&focused": {
+        '&focused': {
           backgroundColor: theme.neutralLighterAlt,
         },
       },

@@ -1,23 +1,42 @@
 import { IButtonStyles } from "@fluentui/react/lib/Button";
 import { IStackStyles, IStackTokens } from "@fluentui/react/lib/Stack";
 import {
-  mergeStyles,
   mergeStyleSets,
-} from "@fluentui/react/lib/Styling";
-import { ITextStyles } from "@fluentui/react/lib/Text";
-import { IReadonlyTheme } from "@microsoft/sp-component-base";
+  mergeStyles,
+  type IProcessedStyleSet,
+  type IStyle,
+} from '@fluentui/react/lib/Styling';
+import { ITextStyles } from '@fluentui/react/lib/Text';
+import { IReadonlyTheme } from '@microsoft/sp-component-base';
 const currentTheme = window.__themeState__.theme;
-export const getMyTeamsStyles = (themeVariant: IReadonlyTheme) => { // eslint-disable-line @typescript-eslint/explicit-function-return-type
+export interface MyTeamsStyles {
+  titleStyles: ITextStyles;
+  stackStyles: IStackStyles;
+  stackTokens: IStackTokens;
+  styleClasses: IProcessedStyleSet<{
+    webPartTitle: IStyle;
+    separator: IStyle;
+    styleIcon: IStyle;
+    teamsContainer: IStyle;
+    teamContainer: IStyle;
+  }>;
+  commentTextStyles: ITextStyles;
+  showHideButtonStyles: Partial<IButtonStyles>;
+}
+
+export const getMyTeamsStyles = (
+  themeVariant: IReadonlyTheme
+): MyTeamsStyles => {
   const commentTextStyles: ITextStyles = {
     root: {
       marginBottom: 15,
-      padding: "0px 25px 25px 25px",
+      padding: '0px 25px 25px 25px',
     },
   };
 
   const showHideButtonStyles: Partial<IButtonStyles> = {
     labelHovered: {
-      textDecoration: "underline",
+      textDecoration: 'underline',
     },
   };
 
@@ -41,7 +60,7 @@ export const getMyTeamsStyles = (themeVariant: IReadonlyTheme) => { // eslint-di
       marginBottom: 20,
     },
     separator: mergeStyles({
-      borderBottomStyle: "solid",
+      borderBottomStyle: 'solid',
       borderWidth: 1,
       borderBottomColor:
         themeVariant?.palette?.themeLighter ?? currentTheme.themeLighter,
@@ -55,60 +74,60 @@ export const getMyTeamsStyles = (themeVariant: IReadonlyTheme) => { // eslint-di
       borderColor:
         themeVariant?.palette?.themePrimary ?? currentTheme.themePrimary,
       borderRightWidth: 0,
-      borderRightStyle: "none",
+      borderRightStyle: 'none',
       borderLeftWidth: 1,
-      borderLeftStyle: "solid",
+      borderLeftStyle: 'solid',
       borderTopWidth: 1,
-      borderTopStyle: "solid",
+      borderTopStyle: 'solid',
       borderBottomWidth: 1,
-      borderBottomStyle: "solid",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+      borderBottomStyle: 'solid',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
     }),
     teamsContainer: mergeStyles({
       // backgroundColor: themeVariant?.palette?.neutralLighterAlt,
       padding: 7,
-      maxHeight: "75vh",
-      overflowY: "auto",
-      display: "grid",
-      gridTemplateColumns: "auto-fill, minmax(min(100%, 65px), 1fr)",
+      maxHeight: '75vh',
+      overflowY: 'auto',
+      display: 'grid',
+      gridTemplateColumns: 'auto-fill, minmax(min(100%, 65px), 1fr)',
       // gridGap:  "6px",
-      "&::-webkit-scrollbar-thumb": {
+      '&::-webkit-scrollbar-thumb': {
         backgroundColor: themeVariant
           ? themeVariant?.palette?.neutralQuaternaryAlt
           : currentTheme.neutralQuaternaryAlt,
       },
-      "&::-webkit-scrollbar": {
+      '&::-webkit-scrollbar': {
         height: 5,
         width: 10,
       },
     }),
     teamContainer: mergeStyles({
-      maxWidth: "100%",
-      overflow: "auto",
+      maxWidth: '100%',
+      overflow: 'auto',
       paddingTop: 10,
       paddingBottom: 10,
       paddingLeft: 20,
       paddingRight: 20,
 
-      borderStyle: "solid",
+      borderStyle: 'solid',
       borderWidth: 1,
       borderColor:
         themeVariant?.palette?.neutralQuaternaryAlt ??
         currentTheme.neutralQuaternaryAlt,
-      borderLeftStyle: "solid",
+      borderLeftStyle: 'solid',
       borderLeftWidth: 3,
       borderLeftColor:
         themeVariant?.palette?.themePrimary ?? currentTheme.themePrimary,
       margin: 3,
 
       backgroundColor: themeVariant?.palette?.white ?? currentTheme.white,
-      boxShadow: "0 5px 15px rgba(50, 50, 90, .1)",
-      ":hover": {
-        borderStyle: "solid",
+      boxShadow: '0 5px 15px rgba(50, 50, 90, .1)',
+      ':hover': {
+        borderStyle: 'solid',
         borderWidth: 1,
-        borderLeftStyle: "solid",
+        borderLeftStyle: 'solid',
         borderLeftWidth: 3,
         borderColor:
           themeVariant?.palette?.themePrimary ?? currentTheme.themePrimary,
