@@ -9,14 +9,14 @@ import {
   bundleIcon,
 } from '@fluentui/react-icons';
 
-import { Button } from '@fluentui/react-button';
+import { Button } from '@fluentui/react-components';
 import { ECalendarViews } from './models/ECalendarViews';
 import { SelectCalendarView } from './SelectCalendarView';
 import { SelectDay } from '@nuvemerudita/react-controls';
 import { SelectMonth } from '@nuvemerudita/react-controls';
 import { SelectWeek } from '@nuvemerudita/react-controls';
 import { Stack } from '@nuvemerudita/react-controls';
-import { Tooltip } from '@fluentui/react-tooltip';
+import { Tooltip } from '@fluentui/react-components';
 import strings from 'ControlStrings';
 
 interface ToolbarProps {

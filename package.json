@@ -33,6 +33,8 @@
     "@fluentui/react-icons-northstar": "0.66.5",
     "@fluentui/react-migration-v8-v9": "^9.4.17",
     "@fluentui/react-northstar": "0.66.0",
+    "@fluentui/react-positioning": "^9.20.3",
+    "@fluentui/react-text": "^9.6.3",
     "@fluentui/react-theme-provider": "^0.19.16",
     "@fluentui/scheme-utilities": "^8.2.12",
     "@fluentui/styles": "0.66.5",
@@ -90,7 +92,8 @@
     "react-quill": "2.0.0",
     "regexify-string": "^1.0.16",
     "spfx-uifabric-themes": "^0.9.0",
-    "swiper": "^8.2.6"
+    "swiper": "^8.2.6",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@microsoft/eslint-config-spfx": "1.21.1",
